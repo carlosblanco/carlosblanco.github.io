@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mermaid Editor</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.0/milligram.css">
+    <style>
+        .container {
+            max-width: 160.0rem;
+        }
+
+        .nav {
+            background: #f4f5f6;
+            border-bottom: .1rem solid #d1d1d1;
+            display: block;
+            height: 5.2rem;
+            left: 0;
+            max-width: 100%;
+            right: 0;
+            top: 0;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        #input {
+            height: 80%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="container">
+            <h2>Mermaid Editor</h1>
+        </div>
+    </nav>
+
+
+
+    <div class="container">
+        <div class="row" style="height: 100%;">
+            <div class="column">
+                <p>Diagram Spec:</p>
+                <textarea id="input" rows="25">sequenceDiagram&NewLine;Alice->>+Bob:Hello&NewLine;Bob-->>-Alice:Hello</textarea>
+                <button id="render">Save Diagram to URL</button>
+                <button id="clear">Clear Source</button>
+            </div>
+            <div class="column column-60">
+                <p>Diagram:</p>
+                <div id="output"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Users/carlosblanco/Projects/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        var input = document.getElementById("input");
+        var output = document.getElementById("output");
+        var render = document.getElementById("render");
+        var clear = document.getElementById("clear");
+
+        mermaid.mermaidAPI.initialize({ startOnLoad: false });
+
+        var saveDiagram = function () {
+            var encodedValue = btoa(input.value);
+            window.location.hash = encodedValue;
+        }
+
+        var clearDiagram = function () {
+            window.location.href = location.protocol + '//' + location.host + location.pathname;
+        }
+
+        var renderDiagram = function () {
+            mermaid.mermaidAPI.render('theGraph', input.value, function (svgCode) {
+                output.innerHTML = svgCode;
+            });
+        }
+
+        input.onkeyup = renderDiagram;
+        render.onclick = saveDiagram;
+        clear.onclick = clearDiagram;
+    
+    
+
+        if (window.location.hash) { //check if diagram exists in url
+            input.value = atob(window.location.hash.substring(1));
+        }
+        renderDiagram();
+    </script>
+
+</body>
+
+</html>
