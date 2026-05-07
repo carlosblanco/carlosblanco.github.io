@@ -1,0 +1,43 @@
+---
+---
+@import "minima";
+
+// Modern Sans-Serif Stack (Helvetica)
+body, h1, h2, h3, h4, .site-title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Modernize Header
+.site-header {
+  border-top: none !important;
+  border-bottom: 1px solid #eee;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.site-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #000 !important;
+}
+
+// Logo Styling
+.nav-logo {
+  height: 32px;
+  width: auto;
+}
+
+// Fix Footer Duplicates
+.site-footer {
+  border-top: 1px solid #eee;
+  padding: 40px 0;
+}
+
+.footer-heading {
+  display: none; // Removes the duplicate Carlos Blanco/Software Theory heading in footer
+}
