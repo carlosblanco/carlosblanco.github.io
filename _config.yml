@@ -1,0 +1,6 @@
+title: Carlos Blanco
+description: >-
+  Software Engineering, Architecture, and Backend Development.
+theme: minima
+plugins:
+  - jekyll-feed
