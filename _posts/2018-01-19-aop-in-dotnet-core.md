@@ -1,10 +1,13 @@
 ---
-layout: post
+layout: article
 title: "Aspect-Oriented Programming (AOP) in .NET Core and C# Using Autofac and DynamicProxy"
 date: 2018-01-19 09:00:00 -0000
 author: Carlos Blanco
 categories: [.NET Core, C#]
 tags: [AOP, Autofac, DynamicProxy, MacOS, Tutorial]
+original_site: "Nearsoft"
+original_url: "https://nearsoft.com/blog/aspect-oriented-programming-aop-in-net-core-and-c-using-autofac-and-dynamicproxy/"
+canonical_url: "https://nearsoft.com/blog/aspect-oriented-programming-aop-in-net-core-and-c-using-autofac-and-dynamicproxy/"
 ---
 
 Implementing Aspect-Oriented Programming (AOP) in .NET Core 2 was an eye-opener. I love the idea of transferring my .NET programming skills across all platforms, and here’s how I applied the techniques I’m used to on Windows directly on a Mac.
