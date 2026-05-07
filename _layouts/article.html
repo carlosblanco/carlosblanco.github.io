@@ -1,0 +1,12 @@
+---
+layout: post
+---
+
+{% if page.original_site %}
+  <blockquote style="font-size: 0.9em; color: #555; background: #f9f9f9; padding: 10px 15px; border-left: 4px solid #007acc; border-radius: 4px;">
+    <em>📝 <strong>Author's Note:</strong> This article was originally written for and published on the 
+    <a href="{{ page.original_url }}" target="_blank" rel="noopener noreferrer">{{ page.original_site }}</a> blog.</em>
+  </blockquote>
+{% endif %}
+
+{{ content }}
