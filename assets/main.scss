@@ -1,0 +1,116 @@
+---
+---
+
+@import "minima";
+
+// Import Modern Sans-Serif (Source Sans 3)
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap");
+
+// Modern Typographic Stack
+body {
+    font-family:
+        "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 17px;
+    line-height: 1.6;
+    color: #333;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+.site-title {
+    font-family:
+        "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    color: #111;
+}
+
+// Modernize Header
+.site-header {
+    border-top: none !important;
+    border-bottom: 1px solid #f0f0f0;
+    min-height: 70px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 70px;
+    }
+}
+
+.site-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #111 !important;
+    font-size: 22px;
+    float: none !important; // Override Minima float
+    line-height: normal !important;
+}
+
+.site-nav {
+    float: none !important; // Override Minima float
+    line-height: normal !important;
+
+    .trigger {
+        display: flex;
+        align-items: center;
+    }
+}
+
+// Logo Styling
+.nav-logo {
+    height: 38px;
+    width: auto;
+    border-radius: 4px;
+}
+
+// Navigation Styling
+.site-nav .page-link {
+    color: #555 !important;
+    font-weight: 500;
+    margin-left: 25px;
+    transition: color 0.2s ease;
+}
+
+.site-nav .page-link:hover {
+    color: #000 !important;
+    text-decoration: none;
+}
+
+// Modernize Content
+.post-title {
+    letter-spacing: -0.02em;
+    font-weight: 700;
+}
+
+.post-content {
+    p {
+        margin-bottom: 1.5rem;
+    }
+}
+
+// Fix Footer Duplicates
+.site-footer {
+    border-top: 1px solid #f0f0f0;
+    padding: 60px 0;
+    background: #fafafa;
+}
+
+.footer-heading {
+    display: none;
+}
+
+.footer-col-wrapper {
+    color: #666;
+    font-size: 15px;
+}
