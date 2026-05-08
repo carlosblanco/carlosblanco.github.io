@@ -6,13 +6,85 @@
 // Import Modern Sans-Serif (Source Sans 3)
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&display=swap");
 
-// Modern Typographic Stack
+// ─── Theme tokens ─────────────────────────────────────────────────────────────
+
+:root {
+    --bg: #ffffff;
+    --text: #333333;
+    --heading: #111111;
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --header-border: #f0f0f0;
+    --footer-bg: #fafafa;
+    --footer-border: #f0f0f0;
+    --footer-text: #666666;
+    --nav-link: #555555;
+    --nav-link-hover: #000000;
+    --link: #2a7ae2;
+    --link-hover: #111111;
+    --code-bg: #f5f5f5;
+    --code-text: #333333;
+    --note-bg: #fdfdfd;
+    --note-border: #eeeeee;
+    --note-accent: #111111;
+    --note-text: #444444;
+    --note-heading: #111111;
+}
+
+[data-theme="dark"] {
+    --bg: #1a1a1a;
+    --text: #cccccc;
+    --heading: #eeeeee;
+    --header-bg: rgba(26, 26, 26, 0.95);
+    --header-border: #2e2e2e;
+    --footer-bg: #141414;
+    --footer-border: #2e2e2e;
+    --footer-text: #888888;
+    --nav-link: #aaaaaa;
+    --nav-link-hover: #ffffff;
+    --link: #6aadff;
+    --link-hover: #9eceff;
+    --code-bg: #252525;
+    --code-text: #e0e0e0;
+    --note-bg: #222222;
+    --note-border: #333333;
+    --note-accent: #888888;
+    --note-text: #bbbbbb;
+    --note-heading: #eeeeee;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --bg: #1a1a1a;
+        --text: #cccccc;
+        --heading: #eeeeee;
+        --header-bg: rgba(26, 26, 26, 0.95);
+        --header-border: #2e2e2e;
+        --footer-bg: #141414;
+        --footer-border: #2e2e2e;
+        --footer-text: #888888;
+        --nav-link: #aaaaaa;
+        --nav-link-hover: #ffffff;
+        --link: #6aadff;
+        --link-hover: #9eceff;
+        --code-bg: #252525;
+        --code-text: #e0e0e0;
+        --note-bg: #222222;
+        --note-border: #333333;
+        --note-accent: #888888;
+        --note-text: #bbbbbb;
+        --note-heading: #eeeeee;
+    }
+}
+
+// ─── Base ─────────────────────────────────────────────────────────────────────
+
 body {
     font-family:
         "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 17px;
     line-height: 1.6;
-    color: #333;
+    color: var(--text);
+    background-color: var(--bg);
     -webkit-font-smoothing: antialiased;
 }
 
@@ -23,15 +95,38 @@ h4,
 .site-title {
     font-family:
         "Source Sans 3", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-    color: #111;
+    color: var(--heading);
 }
 
-// Modernize Header
+a {
+    color: var(--link);
+
+    &:hover {
+        color: var(--link-hover);
+    }
+}
+
+pre,
+code {
+    background-color: var(--code-bg);
+    color: var(--code-text);
+}
+
+pre code {
+    background-color: transparent;
+}
+
+.post-meta {
+    color: var(--footer-text);
+}
+
+// ─── Header ───────────────────────────────────────────────────────────────────
+
 .site-header {
     border-top: none !important;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--header-border);
     min-height: 70px;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--header-bg);
     backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
@@ -39,26 +134,28 @@ h4,
 
     .wrapper {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         min-height: 70px;
     }
 }
 
 .site-title {
+    // flex: 1 makes the title fill all available space,
+    // pushing .site-nav and .theme-toggle flush to the right edge.
+    flex: 1;
     display: flex;
     align-items: center;
     gap: 12px;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: #111 !important;
+    color: var(--heading) !important;
     font-size: 22px;
-    float: none !important; // Override Minima float
+    float: none !important;
     line-height: normal !important;
 }
 
 .site-nav {
-    float: none !important; // Override Minima float
+    float: none !important;
     line-height: normal !important;
 
     .trigger {
@@ -67,27 +164,73 @@ h4,
     }
 }
 
-// Logo Styling
 .nav-logo {
     height: 38px;
     width: auto;
     border-radius: 4px;
 }
 
-// Navigation Styling
 .site-nav .page-link {
-    color: #555 !important;
+    color: var(--nav-link) !important;
     font-weight: 500;
     margin-left: 25px;
     transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--nav-link-hover) !important;
+        text-decoration: none;
+    }
 }
 
-.site-nav .page-link:hover {
-    color: #000 !important;
-    text-decoration: none;
+// ─── Theme toggle ─────────────────────────────────────────────────────────────
+
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px 8px;
+    margin-left: 12px;
+    color: var(--nav-link);
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    flex-shrink: 0;
+    transition: color 0.2s ease, background 0.2s ease;
+
+    @media (max-width: 600px) {
+        margin-right: 44px;
+    }
+
+    &:hover {
+        color: var(--nav-link-hover);
+        background: rgba(128, 128, 128, 0.12);
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+        display: block;
+    }
 }
 
-// Modernize Content
+// Light mode: show moon (click to go dark)
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+// Dark mode: show sun (click to go light)
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-toggle {
+        .icon-sun { display: block; }
+        .icon-moon { display: none; }
+    }
+}
+
+// ─── Content ──────────────────────────────────────────────────────────────────
+
 .post-title {
     letter-spacing: -0.02em;
     font-weight: 700;
@@ -99,11 +242,95 @@ h4,
     }
 }
 
-// Fix Footer Duplicates
+// ─── Article note ─────────────────────────────────────────────────────────────
+
+.article-note {
+    font-size: 0.95em;
+    color: var(--note-text);
+    background: var(--note-bg);
+    padding: 16px 20px;
+    border: 1px solid var(--note-border);
+    border-left: 4px solid var(--note-accent);
+    border-radius: 6px;
+    margin-bottom: 30px;
+
+    .article-note-heading {
+        display: block;
+        margin-bottom: 4px;
+        font-weight: 600;
+        color: var(--note-heading);
+    }
+
+    a {
+        color: var(--note-heading);
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+}
+
+// ─── Dark mode syntax highlighting ───────────────────────────────────────────
+// Minima's _syntax-highlighting.scss hardcodes light-theme colors (#fff, #eef
+// backgrounds and dark token colors). Override everything for dark mode.
+// Can't comma-group a selector with @media in SCSS, so use a mixin.
+
+@mixin dark-highlight {
+    .highlight,
+    .highlighter-rouge .highlight {
+        background: #1e1e1e !important;
+        color: #d4d4d4;
+    }
+
+    .highlight .c,  .highlight .cm, .highlight .c1,
+    .highlight .cs, .highlight .cp { color: #6a9955; }
+
+    .highlight .k,  .highlight .kc, .highlight .kd, .highlight .kn,
+    .highlight .kp, .highlight .kr, .highlight .kt { color: #569cd6; }
+
+    .highlight .s,  .highlight .sb, .highlight .sc, .highlight .sd,
+    .highlight .s2, .highlight .se, .highlight .sh, .highlight .si,
+    .highlight .sx, .highlight .sr, .highlight .s1,
+    .highlight .ss { color: #ce9178; }
+
+    .highlight .m,  .highlight .mf, .highlight .mh, .highlight .mi,
+    .highlight .mo, .highlight .il { color: #b5cea8; }
+
+    .highlight .na { color: #9cdcfe; }
+    .highlight .nb { color: #dcdcaa; }
+    .highlight .nc { color: #4ec9b0; }
+    .highlight .no { color: #9cdcfe; }
+    .highlight .ni { color: #d4d4d4; }
+    .highlight .ne { color: #f44747; }
+    .highlight .nf { color: #dcdcaa; }
+    .highlight .nn { color: #d4d4d4; }
+    .highlight .nt { color: #569cd6; }
+    .highlight .nv { color: #9cdcfe; }
+
+    .highlight .o,  .highlight .ow { color: #d4d4d4; }
+    .highlight .p                  { color: #d4d4d4; }
+    .highlight .w                  { color: #d4d4d4; }
+
+    .highlight .gd { color: #f44747; background-color: transparent; }
+    .highlight .gi { color: #6a9955; background-color: transparent; }
+    .highlight .err { color: #f44747; background-color: transparent; }
+    .highlight .gh, .highlight .gu,
+    .highlight .go, .highlight .gp { color: #888; }
+    .highlight .gr, .highlight .gt { color: #f44747; }
+    .highlight .ge { font-style: italic; }
+    .highlight .gs { font-weight: bold; }
+}
+
+[data-theme="dark"] { @include dark-highlight; }
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { @include dark-highlight; }
+}
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+
 .site-footer {
-    border-top: 1px solid #f0f0f0;
+    border-top: 1px solid var(--footer-border);
     padding: 60px 0;
-    background: #fafafa;
+    background: var(--footer-bg);
 }
 
 .footer-heading {
@@ -111,6 +338,6 @@ h4,
 }
 
 .footer-col-wrapper {
-    color: #666;
+    color: var(--footer-text);
     font-size: 15px;
 }

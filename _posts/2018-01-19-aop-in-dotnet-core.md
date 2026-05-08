@@ -62,7 +62,7 @@ We will implement two interceptors: one for logging and one for caching. Then, w
 ### Step 1: Implementing a Logger
 The first step is to implement the `Castle.DynamicProxy.IInterceptor` interface. This interceptor will log which method is being executed, the parameter values it receives, and its total execution time.
 
-```C#
+```csharp
 public class Logger : IInterceptor
 {
     private readonly TextWriter _writer;
@@ -98,7 +98,7 @@ public class Logger : IInterceptor
 ### Step 2: Registering with Autofac
 Next, we need to register our interceptor with Autofac in our composition root. To set the `Logger` to output to the console, we simply pass `Console.Out` as a parameter to its constructor:
 
-```C#
+```csharp
 var b = new ContainerBuilder();
 b.Register(i => new Logger(Console.Out));
 var container = b.Build();
@@ -109,7 +109,7 @@ The third step is to enable interceptors on our types by calling the `EnableInte
 
 For this example, we'll use a very simple `Calculator` class and an `ICalculator` interface as our intercepted type:
 
-```C#
+```csharp
 public interface ICalculator 
 {
     int Add(int a, int b);
@@ -126,7 +126,7 @@ public class Calculator : ICalculator
 
 Modify the composition root to register this type and enable interceptions:
 
-```C#
+```csharp
 var b = new ContainerBuilder();
 b.Register(i => new Logger(Console.Out));
 b.RegisterType<Calculator>().As<ICalculator>().EnableInterfaceInterceptors();
@@ -136,7 +136,7 @@ var container = b.Build();
 ### Step 4: Associating Interceptors
 Finally, associate the interceptors with your types. You can do this right in the registration chain by calling the `InterceptedBy` method:
 
-```C#
+```csharp
 b.RegisterType<Calculator>()
  .As<ICalculator>()
  .EnableInterfaceInterceptors()
@@ -145,7 +145,7 @@ b.RegisterType<Calculator>()
 
 Once set up, the methods in the `Calculator` type will be intercepted by the `Logger`, outputting the following to the console:
 
-```Bash
+```bash
 macbook:aop cblanco$ dotnet run
 Calling: aop.Domain.ICalculator.Add
 Args: 5, 8
@@ -161,7 +161,7 @@ We’ve successfully wrapped our business logic with a logging interceptor witho
 
 Let's implement a simple memory cache. While not production-ready, it demonstrates how to combine interceptors to prevent executing an expensive method twice for the same arguments.
 
-```C#
+```csharp
 public class MemoryCaching : IInterceptor
 {
     private Dictionary<string, object> _cache = new Dictionary<string, object>();
@@ -190,7 +190,7 @@ public class MemoryCaching : IInterceptor
 ### Layering Interceptors
 Register both interceptors in your composition root and chain them onto the `Calculator` type:
 
-```C#
+```csharp
 var b = new ContainerBuilder();
 
 b.Register(i => new Logger(Console.Out));
@@ -207,7 +207,7 @@ var container = b.Build();
 
 Now, let's resolve the calculator and execute the `Add` method a few times:
 
-```Bash
+```csharp
 var calc = container.Resolve<ICalculator>();
 
 calc.Add(5, 8);
@@ -220,7 +220,7 @@ calc.Add(5, 8);
 (To make the execution time difference obvious, I temporarily added a 1000ms thread sleep inside the Add method). 
 As the terminal output shows, the first time a method is executed with specific parameters, it takes time. Subsequent calls with the same values are instant because the cache intercepts the call and returns the stored value:
 
-```Bash
+```bash
 macbook:aop cblanco$ dotnet run
 
 Calling: aop.Domain.ICalculator.Add

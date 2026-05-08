@@ -3,10 +3,10 @@ layout: post
 ---
 
 {% if page.original_site %}
-  <div style="font-size: 0.95em; color: #444; background: #fdfdfd; padding: 16px 20px; border: 1px solid #eee; border-left: 4px solid #111; border-radius: 6px; margin-bottom: 30px;">
-    <span style="display: block; margin-bottom: 4px; font-weight: 600; color: #111;">📝 Author's Note</span>
-    This article was originally written for and published on the 
-    <a href="{{ page.original_url }}" target="_blank" rel="noopener noreferrer" style="color: #000; text-decoration: underline; text-underline-offset: 3px;">{{ page.original_site }}</a> blog.
+  <div class="article-note">
+    <span class="article-note-heading">📝 Author's Note</span>
+    This article was originally written for and published on the
+    <a href="{{ page.original_url }}" target="_blank" rel="noopener noreferrer">{{ page.original_site }}</a> blog.
   </div>
 {% endif %}
 
