@@ -11,3 +11,6 @@ plugins:
 
 # Logo path
 logo: /assets/images/logo.png
+
+exclude:
+  - CLAUDE.md
