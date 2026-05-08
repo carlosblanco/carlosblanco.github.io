@@ -268,6 +268,35 @@ pre code {
     }
 }
 
+// ─── Dark mode hamburger menu ─────────────────────────────────────────────────
+// Minima hardcodes background-color: #fff and a light border on the mobile nav.
+
+@media (max-width: 600px) {
+    [data-theme="dark"] .site-nav,
+    [data-theme="dark"] .site-nav input:checked ~ .trigger {
+        background-color: #242424;
+        border-color: #3a3a3a;
+    }
+
+    [data-theme="dark"] .site-nav .menu-icon > svg {
+        fill: #aaaaaa;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    @media (max-width: 600px) {
+        :root:not([data-theme="light"]) .site-nav,
+        :root:not([data-theme="light"]) .site-nav input:checked ~ .trigger {
+            background-color: #242424;
+            border-color: #3a3a3a;
+        }
+
+        :root:not([data-theme="light"]) .site-nav .menu-icon > svg {
+            fill: #aaaaaa;
+        }
+    }
+}
+
 // ─── Dark mode syntax highlighting ───────────────────────────────────────────
 // Minima's _syntax-highlighting.scss hardcodes light-theme colors (#fff, #eef
 // backgrounds and dark token colors). Override everything for dark mode.
