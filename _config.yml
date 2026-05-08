@@ -2,6 +2,7 @@ title: Software Theory
 author: Carlos Blanco
 description: Software Engineering, Architecture, and Backend Development.
 theme: minima
+google_analytics: G-WXTZ80DGYC
 
 # This allows us to use custom CSS and includes
 plugins:
