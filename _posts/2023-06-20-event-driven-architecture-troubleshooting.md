@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Why Event-Driven Architecture Makes Distributed Systems Debuggable"
+title: "Why Event-Driven Architecture With a Centralized Dead-Letter Queue Makes Distributed Systems Easily Debuggable"
 date: 2026-05-15
 author: Carlos Blanco
 categories: [architecture, backend]
