@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why Event-Driven Architecture Makes Distributed Systems Debuggable"
-date: 2023-06-20
+date: 2026-05-15
 author: Carlos Blanco
 categories: [architecture, backend]
 tags: [event-driven, microservices, distributed-systems, observability, dlq]
